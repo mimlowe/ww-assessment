@@ -6,7 +6,6 @@
  * @param key Character key for which the associated value will increment
  * @param map Map reference upon which the operations are performed
  */
-// @ts-ignore
 function incrementOccurrence(key: string, map: Map<string, number>) {
     // Check if the map contains a value for key
     if (map.has(key)) {
@@ -33,13 +32,12 @@ function incrementOccurrence(key: string, map: Map<string, number>) {
  * @param inputString
  * @param dictionary
  */
-function findWords(inputString: string, dictionary:string[]): string[] {
+export function findWords(inputString: string, dictionary:string[]): string[] {
     // Initialize result array. We'll use this to store words which can be spelled using
     // the characters provided in the inputString.
     const result: string[] = [];
 
     // Initialize a map to store the occurrence count for each character of the inputString
-    // @ts-ignore
     const inputMap: Map<string, number> = new Map<string, number>();
 
     // Count the occurrences of each character in the input string
@@ -55,7 +53,6 @@ function findWords(inputString: string, dictionary:string[]): string[] {
         if (word.length > inputString.length) continue;
 
         // Initialize a map to store the character occurrence counts for the current dictionary word
-        //@ts-ignore
         const wordMap: Map<string, number> = new Map<string, number>();
 
         // Optimistically set a flag indicating that this word is valid.
@@ -99,8 +96,3 @@ function findWords(inputString: string, dictionary:string[]): string[] {
     return result;
 }
 
-console.log(findWords("ate", ["ate", "eat", "tea", "dog", "do", "god", "goo", "go", "good"]));
-// Expected output: ["ate", "eat", "tea"]
-
-console.log(findWords("oogd", ["ate", "eat", "tea", "dog", "do", "god", "goo", "go", "good"]));
-// Expected output: ["dog", "do", "god", "goo", "go", "good"]
