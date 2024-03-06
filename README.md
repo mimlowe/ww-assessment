@@ -7,8 +7,8 @@ In this project, you'll find the `findWords` solution located at the following p
 ```
 The `/utils` directory exports the function from `findWords.ts`.
 
-Additionally, `/utils` contains `validators.ts`, which exports a function called `isWordLowercase`, which is used by `findWords.ts` to 
-validate the input arguments
+Additionally, `/utils` contains `validators.ts`, which exports a function called `isWordLowercase`. This validator is used by `findWords.ts` to check the input arguments.
+
 ---
 The entrypoint to the project is located at:
 ```
