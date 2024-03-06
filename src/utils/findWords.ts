@@ -1,3 +1,18 @@
+import {isWordLowercase} from "./validators";
+
+/**
+ * Checks the validity of findWords input arguments
+ * @param inputString
+ * @param dictionary
+ */
+function isInputValid(inputString: string, dictionary: string[]) {
+    let isValid: boolean = true;
+    for (const word of dictionary) {
+        isValid = isWordLowercase(word);
+    }
+
+    return isValid && isWordLowercase(inputString);
+}
 
 /**
  * Given a key and a Map, increments the numerical value for the given key by 1.
@@ -25,6 +40,7 @@ function incrementOccurrence(key: string, map: Map<string, number>) {
     }
 }
 
+
 /**
  * Returns an array of words from the dictionary that can be formed by rearranging
  * some or all of the letters in the input string.
@@ -33,6 +49,10 @@ function incrementOccurrence(key: string, map: Map<string, number>) {
  * @param dictionary
  */
 export function findWords(inputString: string, dictionary:string[]): string[] {
+
+    if (!isInputValid(inputString,dictionary)) {
+        throw new Error('Input error: Inputs must consist of lowercase letters a-z');
+    }
     // Initialize result array. We'll use this to store words which can be spelled using
     // the characters provided in the inputString.
     const result: string[] = [];
@@ -50,7 +70,7 @@ export function findWords(inputString: string, dictionary:string[]): string[] {
 
         // Since each character of the inputString may only be used once,
         // we can skip any dictionary entries that are longer than the inputString.
-        if (word.length > inputString.length) continue;
+        //if (word.length > inputString.length) continue;
 
         // Initialize a map to store the character occurrence counts for the current dictionary word
         const wordMap: Map<string, number> = new Map<string, number>();
@@ -72,6 +92,7 @@ export function findWords(inputString: string, dictionary:string[]): string[] {
             // We'll consider the count to be 1 on this iteration because we
             // have not yet performed the logic to increment the value in wordMap.
             if (!charCountWord) charCountWord = 1;
+            else charCountWord++;
 
             // If the occurrence count exceeds what is available in the inputString,
             // then we can stop processing the current dictionary word because it is no longer valid.
